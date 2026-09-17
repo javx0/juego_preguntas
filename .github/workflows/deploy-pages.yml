@@ -18,6 +18,9 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: juego_preguntas
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -27,6 +30,7 @@ jobs:
         with:
           node-version: 20
           cache: npm
+          cache-dependency-path: juego_preguntas/package-lock.json
 
       - name: Install dependencies
         run: npm ci
