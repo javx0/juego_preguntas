@@ -1,0 +1,77 @@
+<main
+  class="question-screen"
+  [class.silencio]="!currentQuestionData || currentQuestionData.type === 'silencio'"
+  (click)="nextQuestion()"
+>
+  <img class="mobile-header-image" src="/img/chapa_hablando.png" alt="" aria-hidden="true" />
+
+  @if (hasStarted) {
+    <button
+      class="copy-button"
+      type="button"
+      title="Copiar la partida activa"
+      (click)="copyActiveQuestionIds(); $event.stopPropagation()"
+    >
+      {{ isQuestionListCopied ? 'Copiado' : 'Copiar partida' }}
+    </button>
+  }
+
+  @if (currentQuestionData) {
+    <h1
+      [class.long-question]="currentQuestionData.text.length > 70"
+      [class.very-long-question]="currentQuestionData.text.length > 120"
+    >
+      {{ currentQuestionData.text }}
+    </h1>
+  } @else if (hasStarted) {
+    <h1>La caja no tiene más preguntas</h1>
+  }
+</main>
+
+@if (isRulesModalOpen) {
+  <div class="modal-backdrop" role="presentation" (click)="$event.stopPropagation()">
+    <section class="rules-modal" role="dialog" aria-modal="true" aria-label="Atención">
+      <p class="modal-label">ATENCIÓN:</p>
+
+      <div class="rules-copy">
+        <p>
+          En caso de que la pregunta no pueda ser contestada, supongamos que tuvieras la
+          oportunidad de responderla como caso hipotético.
+        </p>
+        <p>
+          En caso de no querer responder debe pagar prenda y no valen los zapatos,
+          calcetines, gorros, gafas y accesorios varios. Únicamente se permiten las
+          prendas que porta la persona desde el inicio del juego.
+        </p>
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" (click)="startNewGame()">Nuevo juego</button>
+        <button type="button" [disabled]="!canContinue" (click)="continueGame()">
+          Continuar juego
+        </button>
+        <button type="button" (click)="openOptions()">Más opciones</button>
+      </div>
+    </section>
+  </div>
+}
+
+@if (isOptionsModalOpen) {
+  <div class="modal-backdrop options-backdrop" role="presentation" (click)="closeOptions()">
+    <section class="options-modal" role="dialog" aria-modal="true" aria-label="Más opciones" (click)="$event.stopPropagation()">
+      <button class="close-options" type="button" aria-label="Cerrar más opciones" (click)="closeOptions()">×</button>
+      <h2>Cargar partida</h2>
+      <p>Pega aquí la lista JSON de IDs guardada en otro dispositivo.</p>
+      <textarea
+        aria-label="Lista JSON de IDs"
+        placeholder="[1, 3, 5]"
+        [value]="importedIdsText"
+        (input)="importedIdsText = $any($event.target).value"
+      ></textarea>
+      @if (importError) {
+        <p class="import-error" role="alert">{{ importError }}</p>
+      }
+      <button class="import-button" type="button" (click)="importGame()">Cargar partida</button>
+    </section>
+  </div>
+}

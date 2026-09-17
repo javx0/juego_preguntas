@@ -1,0 +1,313 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  color: #25221d;
+  font-family: Georgia, 'Times New Roman', serif;
+}
+
+.question-screen {
+  box-sizing: border-box;
+  min-height: 100vh;
+  padding: 2rem clamp(1.5rem, 5vw, 5rem);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  position: relative;
+  isolation: isolate;
+  background-color: #55575a;
+  background-image: url('/img/hablando.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.question-screen::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: rgba(20, 22, 24, 0.28);
+  content: '';
+}
+
+.question-screen.silencio {
+  background-image: url('/img/silencio.png');
+}
+
+.mobile-header-image {
+  display: none;
+}
+
+.copy-button {
+  position: absolute;
+  bottom: 1.5rem;
+  right: clamp(1.5rem, 5vw, 5rem);
+  z-index: 1;
+  padding: 0.75rem 1rem;
+  border: 1px solid rgba(255, 253, 248, 0.65);
+  border-radius: 999px;
+  color: #fffdf8;
+  background: rgba(20, 22, 24, 0.45);
+  font-family: Arial, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.copy-button:hover,
+.copy-button:focus-visible {
+  color: #25221d;
+  background: #fffdf8;
+  outline: none;
+}
+
+h1 {
+  position: relative;
+  color: #fffdf8;
+  max-width: 52rem;
+  margin: 0;
+  text-align: center;
+  font-size: clamp(2.8rem, 7vw, 6.8rem);
+  font-weight: 400;
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+  text-shadow: 0 0.12rem 0.9rem rgba(0, 0, 0, 0.42);
+}
+
+h1.long-question {
+  font-size: clamp(2.2rem, 5.2vw, 5.2rem);
+  line-height: 1.02;
+}
+
+h1.very-long-question {
+  font-size: clamp(1.8rem, 4.2vw, 4.2rem);
+  line-height: 1.08;
+}
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+  background: rgba(10, 12, 14, 0.7);
+}
+
+.rules-modal {
+  width: min(100%, 38rem);
+  max-height: min(90vh, 44rem);
+  overflow-y: auto;
+  padding: clamp(1.5rem, 5vw, 3.25rem);
+  border: 1px solid rgba(255, 253, 248, 0.25);
+  border-radius: 0.25rem;
+  color: #25221d;
+  background: #fffdf8;
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.3);
+}
+
+.modal-label {
+  margin: 0 0 2rem;
+  color: #b94131;
+  font-family: Arial, sans-serif;
+  font-size: clamp(2rem, 7vw, 4.5rem);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 0.95;
+  text-align: center;
+}
+
+.rules-copy {
+  color: #504b44;
+  font-family: Arial, sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.rules-copy p {
+  margin: 0;
+}
+
+.rules-copy p + p {
+  margin-top: 1rem;
+}
+
+.modal-actions {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+.rules-modal button {
+  padding: 0.85rem 1.1rem;
+  border: 0;
+  border-radius: 999px;
+  color: #fffdf8;
+  background: #25221d;
+  font-family: Arial, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.rules-modal button:disabled {
+  color: #a6a29b;
+  background: #dedbd4;
+  cursor: not-allowed;
+}
+
+.rules-modal button:hover,
+.rules-modal button:focus-visible {
+  background: #b94131;
+  outline: none;
+}
+
+.rules-modal button:disabled:hover {
+  background: #dedbd4;
+}
+
+.options-modal {
+  position: relative;
+  width: min(100%, 38rem);
+  padding: 3rem clamp(1.5rem, 5vw, 3rem);
+  border-radius: 0.25rem;
+  color: #25221d;
+  background: #fffdf8;
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.3);
+}
+
+.options-modal h2 {
+  margin: 0 0 0.75rem;
+  font-size: 2rem;
+  font-weight: 400;
+}
+
+.options-modal p {
+  margin: 0;
+  color: #504b44;
+  font-family: Arial, sans-serif;
+  line-height: 1.5;
+}
+
+.options-modal textarea {
+  display: block;
+  width: 100%;
+  min-height: 8rem;
+  margin-top: 1.25rem;
+  padding: 0.85rem;
+  border: 1px solid #bbb6ad;
+  border-radius: 0.2rem;
+  color: #25221d;
+  background: #f6f3ec;
+  font-family: Consolas, monospace;
+  font-size: 0.95rem;
+  resize: vertical;
+}
+
+.options-modal textarea:focus {
+  border-color: #b94131;
+  outline: 2px solid rgba(185, 65, 49, 0.2);
+}
+
+.import-error {
+  margin-top: 0.75rem !important;
+  color: #b94131 !important;
+  font-size: 0.85rem;
+}
+
+.import-button {
+  margin-top: 1.25rem;
+  padding: 0.85rem 1.1rem;
+  border: 0;
+  border-radius: 999px;
+  color: #fffdf8;
+  background: #25221d;
+  font-family: Arial, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.import-button:hover,
+.import-button:focus-visible {
+  background: #b94131;
+  outline: none;
+}
+
+.close-options {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.9rem;
+  border: 0;
+  color: #25221d;
+  background: transparent;
+  font-family: Arial, sans-serif;
+  font-size: 1.75rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.close-options:hover,
+.close-options:focus-visible {
+  color: #b94131;
+  outline: none;
+}
+
+@media (max-width: 600px) {
+  .question-screen {
+    min-height: 100dvh;
+    padding: 1.25rem 1.25rem 1.5rem;
+    display: grid;
+      grid-template-areas:
+        'header'
+        'question'
+        'action';
+      grid-template-rows: auto minmax(0, 1fr) auto;
+    gap: 1rem;
+    background-image: none;
+    background-color: #55575a;
+  }
+
+  .question-screen::before {
+    display: none;
+  }
+
+  .mobile-header-image {
+    grid-area: header;
+    display: block;
+    width: min(50vw, 12rem);
+    max-height: 18vh;
+    margin: 0 auto;
+    object-fit: contain;
+  }
+
+  h1,
+  h1.long-question,
+  h1.very-long-question {
+    grid-area: question;
+    align-self: center;
+    max-width: 100%;
+    margin: 0;
+    text-align: center;
+    transform: translateY(-8vh);
+    font-size: clamp(1.8rem, 8vw, 3.5rem);
+    line-height: 1.05;
+  }
+
+  .copy-button {
+    grid-area: action;
+    position: static;
+    justify-self: center;
+    margin: 0;
+  }
+
+  .modal-actions {
+    grid-template-columns: 1fr;
+  }
+}
