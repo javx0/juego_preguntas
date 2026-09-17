@@ -1,9 +1,10 @@
 <main
   class="question-screen"
   [class.silencio]="!currentQuestionData || currentQuestionData.type === 'silencio'"
+  [style.--question-background]="questionBackground"
   (click)="nextQuestion()"
 >
-  <img class="mobile-header-image" src="/img/chapa_hablando.png" alt="" aria-hidden="true" />
+  <img class="mobile-header-image" src="img/chapa_hablando.png" alt="" aria-hidden="true" />
 
   @if (hasStarted) {
     <button

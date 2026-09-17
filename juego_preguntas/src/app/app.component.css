@@ -15,7 +15,7 @@
   position: relative;
   isolation: isolate;
   background-color: #55575a;
-  background-image: url('/img/hablando.png');
+  background-image: var(--question-background);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -27,10 +27,6 @@
   z-index: -1;
   background: rgba(20, 22, 24, 0.28);
   content: '';
-}
-
-.question-screen.silencio {
-  background-image: url('/img/silencio.png');
 }
 
 .mobile-header-image {

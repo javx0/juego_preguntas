@@ -29,6 +29,12 @@ export class AppComponent implements OnInit {
   importedIdsText = '';
   importError = '';
 
+  get questionBackground(): string {
+    return this.currentQuestionData?.type === 'silencio'
+      ? "url('img/silencio.png')"
+      : "url('img/hablando.png')";
+  }
+
   ngOnInit(): void {
     const storedQuestions = this.loadStoredQuestions();
     this.canContinue = storedQuestions !== null && storedQuestions.length > 0;
@@ -93,7 +99,7 @@ export class AppComponent implements OnInit {
       return;
     }
 
-    this.http.get<Question[]>('/questions.json').subscribe((allQuestions) => {
+    this.http.get<Question[]>('questions.json').subscribe((allQuestions) => {
       const questionsById = new Map(
         allQuestions
           .filter((question) => question.id !== undefined)
@@ -137,7 +143,7 @@ export class AppComponent implements OnInit {
   }
 
   private loadQuestionsFromFile(): void {
-    this.http.get<Question[]>('/questions.json').subscribe((questions) => {
+    this.http.get<Question[]>('questions.json').subscribe((questions) => {
       this.questions.push(...questions);
       this.showRandomQuestion();
     });
